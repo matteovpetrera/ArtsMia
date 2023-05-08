@@ -85,7 +85,7 @@ public class Model {
 	}
 	
 	public Integer calcolaConnessa(Integer objID) {
-		
+		loadNodes();
 		// Modo 1: esploro il grafo, e calcolo la size del set 
 		//dei vertici esplorati dall'iteratore (garanzia di aver esplorato tutti i nodi connessi)
 		DepthFirstIterator<ArtObject, DefaultWeightedEdge> iterator = 
