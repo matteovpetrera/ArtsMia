@@ -7,6 +7,10 @@ package it.polito.tdp.artsmia;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.jgrapht.Graph;
+import org.jgrapht.graph.DefaultWeightedEdge;
+
+import it.polito.tdp.artsmia.model.ArtObject;
 import it.polito.tdp.artsmia.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,7 +51,12 @@ public class FXMLController {
     
     @FXML
     void doAnalizzaOggetti(ActionEvent event) {
-
+    	
+    	Graph<ArtObject, DefaultWeightedEdge> grafo = this.model.creaGrafo();
+    	
+    	this.txtResult.appendText("il grafo è stato correttamente creato e contiene:\n" 
+    			+ grafo.vertexSet().size()+" vertici;\n" 
+    			+ grafo.edgeSet().size()+" archi.");
     }
 
     @FXML

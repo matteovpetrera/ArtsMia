@@ -3,6 +3,7 @@ package it.polito.tdp.artsmia.db;
 import java.util.List;
 
 import it.polito.tdp.artsmia.model.ArtObject;
+import it.polito.tdp.artsmia.model.Collegamento;
 
 public class TestArtsmiaDAO {
 
@@ -13,6 +14,8 @@ public class TestArtsmiaDAO {
 		List<ArtObject> objects = dao.listObjects();
 		System.out.println(objects.get(0));
 		System.out.println(objects.size());
+		
+		
 	}
 
 }
