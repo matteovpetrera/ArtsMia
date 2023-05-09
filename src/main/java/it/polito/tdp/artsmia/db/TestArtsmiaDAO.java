@@ -15,6 +15,9 @@ public class TestArtsmiaDAO {
 		System.out.println(objects.get(0));
 		System.out.println(objects.size());
 		
+		List<Collegamento> coll = dao.trovaCollegamenti();
+		System.out.println(coll.size());
+		
 		
 	}
 

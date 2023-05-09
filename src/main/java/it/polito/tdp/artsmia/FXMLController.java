@@ -5,9 +5,12 @@
 package it.polito.tdp.artsmia;
 
 import java.net.URL;
+
+
 import java.util.ResourceBundle;
 
 import org.jgrapht.Graph;
+
 import org.jgrapht.graph.DefaultWeightedEdge;
 
 import it.polito.tdp.artsmia.model.ArtObject;
@@ -18,11 +21,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.jgrapht.alg.connectivity.ConnectivityInspector;
 
 public class FXMLController {
 	
 	private Model model;
-
+	
+	private Graph<ArtObject, DefaultWeightedEdge> grafo;
+	
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -52,7 +58,7 @@ public class FXMLController {
     @FXML
     void doAnalizzaOggetti(ActionEvent event) {
     	
-    	Graph<ArtObject, DefaultWeightedEdge> grafo = this.model.creaGrafo();
+    	grafo = this.model.creaGrafo();
     	
     	this.txtResult.appendText("il grafo è stato correttamente creato e contiene:\n" 
     			+ grafo.vertexSet().size()+" vertici;\n" 
@@ -61,12 +67,30 @@ public class FXMLController {
 
     @FXML
     void doCalcolaComponenteConnessa(ActionEvent event) {
-
+    	
+    	
+    	txtResult.clear();
+    	int id = Integer.valueOf(txtObjectId.getText());
+    	ArtObject ogg = null;
+    	
+    	ConnectivityInspector<ArtObject, DefaultWeightedEdge> inspector = new ConnectivityInspector<>(grafo);
+    	for(ArtObject o: model.listObjects()) {
+    		if(o.getId()==id) {
+    			ogg = o;
+    		}
+    	}
+        System.out.println("Componente connessa di " + ogg + ": " + inspector.connectedSetOf(ogg));
+    	
+		
+    	txtResult.appendText("Componente connessa di " + ogg + ": " + inspector.connectedSetOf(ogg));
+    	
     }
 
     @FXML
     void doCercaOggetti(ActionEvent event) {
-
+    	
+    	//txtResult.clear();
+    	
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

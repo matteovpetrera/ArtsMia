@@ -2,6 +2,7 @@ package it.polito.tdp.artsmia.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.jgrapht.Graphs;
 import org.jgrapht.Graph;
@@ -38,5 +39,14 @@ public class Model {
 		System.out.println(grafo.edgeSet().size());
 		
 		return grafo;
+	}
+	
+	public List<ArtObject> listObjects(){
+		dao = new ArtsmiaDAO();
+		return this.dao.listObjects();
+	}
+	public Map<Integer,ArtObject> listObjects2(){
+		dao = new ArtsmiaDAO();
+		return this.dao.listObjects2();
 	}
 }
